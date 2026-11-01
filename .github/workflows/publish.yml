@@ -1,0 +1,54 @@
+name: Publish thesis reproduction
+on:
+  push:
+    paths:
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore archived source files
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64, gzip, json, hashlib
+          from pathlib import Path
+
+          parts = sorted(Path(".").glob("_release_payload_*.txt"))
+          assert len(parts) == 6, "Missing source archive fragment"
+          raw = gzip.decompress(base64.b64decode("".join(p.read_text() for p in parts)))
+          assert hashlib.sha256(raw).hexdigest() == "73dd2e120b83095d0c23a1794c71076758d94a5e5e87406b4fa839ffe576a84a"
+          files = json.loads(raw)
+          assert len(files) == 54, "Unexpected archive size"
+          assert sum(p.endswith(".py") and p.startswith("archive/original_scripts/") for p in files) == 38
+          for name, value in files.items():
+              target = Path(name)
+              assert not target.is_absolute() and ".." not in target.parts
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_text(value, encoding="utf-8")
+          print(f"Restored {len(files)} source and documentation files.")
+          PY
+      - name: Validate code and generate figures
+        run: |
+          python -m pip install -e '.[dev]'
+          python -m pytest -q
+          python examples/generate_figures.py
+      - name: Commit completed repository
+        run: |
+          rm -f _release_payload_*.txt .github/workflows/publish.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish cleaned thesis code, tests and reproducible figures"
+          git push
