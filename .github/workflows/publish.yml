@@ -46,7 +46,7 @@ jobs:
           python examples/generate_figures.py
       - name: Commit completed repository
         run: |
-          rm -f _release_payload_*.txt .github/workflows/publish.yml
+          rm -f _release_payload_*.txt .github/workflows/tests.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
