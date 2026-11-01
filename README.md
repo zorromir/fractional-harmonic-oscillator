@@ -54,4 +54,4 @@ archive/original_scripts/    Original thesis code, unchanged
 
 **Note.** This is a presentation and reproducibility remake, not the exact codebase as it existed in 2025. The recreated figures are based on the thesis models; they are not guaranteed to match every original plot. The numerical results are simulations, not measured data. No open-source license has been assigned.
 
-[Research page](https://zorromir.github.io/#research)
+[Thesis overview and chapter guide](THESIS.md) · [Research page](https://zorromir.github.io/#research)
