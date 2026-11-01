@@ -1,0 +1,2 @@
+# Editable package and validation dependencies
+-e .[dev]

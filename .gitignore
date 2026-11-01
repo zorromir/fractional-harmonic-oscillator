@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+*.log
+# Small generated figure exports in figures/ are committed deliberately.

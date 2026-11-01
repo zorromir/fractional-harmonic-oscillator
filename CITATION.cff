@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Code remake of a 2025 BSc thesis. Cite the thesis and repository where relevant."
+title: "Fractional Harmonic Oscillator: Thesis Code Remake"
+authors:
+  - family-names: "Schouten"
+    given-names: "Kelvin"
+year: 2026
+type: software
+repository-code: "https://github.com/zorromir/fractional-harmonic-oscillator"
