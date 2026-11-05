@@ -3,7 +3,7 @@
 **Kelvin Schouten · Utrecht University · BSc Mathematics · 2025**  
 **Supervisor:** Paul Zegeling
 
-This is a short reading guide to my bachelor's thesis, **not the complete PDF manuscript**. The original manuscript has not yet been added to the public repository.
+This is a short guide to my bachelor's thesis. The [full thesis PDF](https://zorromir.github.io/assets/research/The_Fractional_Harmonic_Oscillator__Analysis_and_Computations.pdf) is available on my portfolio website.
 
 ## Research question
 
